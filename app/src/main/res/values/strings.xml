@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name" translatable="false">findMe</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="Instructions">Bitte scannen Sie Ihren Startpunkt (QR-Code)\nvia Kamera am rechten unteren Rand des Screens\nund\nwählen Sie ein Ziel aus der linksseitigen Liste.</string>
+</resources>
+
