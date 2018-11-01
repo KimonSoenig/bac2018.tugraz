@@ -5,4 +5,11 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_settings">Settings</string>
     <string name="Instructions">\"Please get your start-point via QR-Code\nwith the bottom right button\nand\na destination out of the right-handed list.</string>
+    <string name="previous">Previous</string>
+    <string name="current">Current</string>
+    <string name="next">Next</string>
+    <string name="Settings">Settings</string>
+    <string name="cancle">Cancle</string>
+    <string name="ScanInstructions">Hold your Camera in order that the QR-Code is in the middle of your Picture</string>
+    <string name="ItemSelection">Select destination</string>
 </resources>

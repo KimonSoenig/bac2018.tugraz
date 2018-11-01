@@ -6,5 +6,12 @@
 
     <string name="action_settings">Settings</string>
     <string name="Instructions">Bitte scannen Sie Ihren Startpunkt (QR-Code)\nvia Kamera am rechten unteren Rand des Screens\nund\nwählen Sie ein Ziel aus der linksseitigen Liste.</string>
+    <string name="current">Jetziger</string>
+    <string name="next">Nächster</string>
+    <string name="previous">Letzter</string>
+    <string name="Settings">Einstellungen</string>
+    <string name="cancle">Abbrechen</string>
+    <string name="ScanInstructions">Richten Sie Ihre Kamera so aus, dass der QR-Code sich mittig im Bild befindet</string>
+    <string name="ItemSelection">Wählen Sie den Zielort</string>
 </resources>
 

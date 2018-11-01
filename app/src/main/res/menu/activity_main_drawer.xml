@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <item android:title="Select a room">
+    <item android:title="@string/ItemSelection">
         <menu>
             <item
                 android:id="@+id/nav_room1"

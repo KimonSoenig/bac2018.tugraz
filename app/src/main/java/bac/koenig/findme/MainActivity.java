@@ -2,6 +2,7 @@ package bac.koenig.findme;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
@@ -26,19 +27,16 @@ public class MainActivity extends AppCompatActivity
     Vibrator vibrate;
 
 
+
     @SuppressLint("ClickableViewAccessibility")
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-
-
         final ImageButton ibtn_speaker_aktivity = findViewById(R.id.ibtn_speaker_aktivity);
-
-
 
 
 
@@ -46,12 +44,11 @@ public class MainActivity extends AppCompatActivity
         clickSound = MediaPlayer.create(this, R.raw.speakersound);
         vibrate = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
-
         //set OnTouch to listen in Speaker
         ibtn_speaker_aktivity.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if(event.getAction() == MotionEvent.ACTION_DOWN){
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
                     Toast.makeText(getApplicationContext(), "Speaker ON", Toast.LENGTH_SHORT).show();
                     clickSound.start();
                     //check device SDK app is currently running on
@@ -63,7 +60,7 @@ public class MainActivity extends AppCompatActivity
                     }
                     //Start Speaker input
                 }
-                if(event.getAction() == MotionEvent.ACTION_UP){
+                if(event.getAction() == MotionEvent.ACTION_UP) {
                     //EndSpeaker input
                 }
                 return true;
@@ -71,16 +68,20 @@ public class MainActivity extends AppCompatActivity
         });
 
 
-
-
         //Onclicklistener für camerabutton
         ImageButton ibtn_camera_activity = findViewById(R.id.ibtn_camera_activity);
         ibtn_camera_activity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Camera is on", Toast.LENGTH_LONG).show();
+                openQRScan();
+            }
+
+            private void openQRScan() {
+                Intent intent = new Intent(getApplicationContext(), QRScan.class);
+                startActivity(intent);
             }
         });
+
 
 
 
@@ -101,7 +102,6 @@ public class MainActivity extends AppCompatActivity
         ibtn_settings.setOnClickListener(settingClicks);
 
 
-
         //Onclicklistener zum öffnen der Liste via BurgerButton
         final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ImageButton ibtn_open_drawer;
@@ -114,8 +114,9 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+        }
 
-    }
+
 
     @Override
     public void onBackPressed() {
@@ -126,7 +127,6 @@ public class MainActivity extends AppCompatActivity
             super.onBackPressed();
         }
     }
-
 
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -154,4 +154,8 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
+
+
 }
