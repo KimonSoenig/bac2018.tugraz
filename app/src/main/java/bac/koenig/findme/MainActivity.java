@@ -17,6 +17,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
@@ -27,7 +28,6 @@ public class MainActivity extends AppCompatActivity
     Vibrator vibrate;
 
 
-
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -36,15 +36,20 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        final ImageButton ibtn_speaker_aktivity = findViewById(R.id.ibtn_speaker_aktivity);
 
+        //meine güte was is den los hier
+        TextView databasetest = findViewById(R.id.textviewdatabasetest);
+        databasetest.setText(Database.getInstance(this).dao().getAll().toString());
 
+        //SPEAKER BUTTON
 
-        //generate sound onclick
+        //generate sound and vibration Objects to use for SpeakerButton click
         clickSound = MediaPlayer.create(this, R.raw.speakersound);
         vibrate = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
         //set OnTouch to listen in Speaker
+        ImageButton ibtn_speaker_aktivity = findViewById(R.id.ibtn_speaker_aktivity);
+
         ibtn_speaker_aktivity.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -67,8 +72,9 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+        //CAMERA BUTTON
 
-        //Onclicklistener für camerabutton
+        //Onclicklistener für camerabutton. Starts QRScan Aktivity
         ImageButton ibtn_camera_activity = findViewById(R.id.ibtn_camera_activity);
         ibtn_camera_activity.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,25 +88,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-
-
-
-        //ruft alertHandler class bei settingsbtn druck auf Übergebener Kontext: MainAct
-        alertHandler = new AlertHandler(this);
-
-
-        View.OnClickListener settingClicks = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                alertHandler.showSettingsAlert();
-            }
-        };
-
-        ImageButton ibtn_settings = findViewById(R.id.ibtn_settings);
-        Button btn_settings = findViewById(R.id.btn_settings);
-        btn_settings.setOnClickListener(settingClicks);
-        ibtn_settings.setOnClickListener(settingClicks);
-
+        //DRAWER OPEN BUTTON
 
         //Onclicklistener zum öffnen der Liste via BurgerButton
         final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -114,10 +102,30 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+
+        //SETTINGS OPEN
+
+        //Get Context for AlertHandler
+        alertHandler = new AlertHandler(this);
+
+        ImageButton ibtn_settings = findViewById(R.id.ibtn_settings);
+        Button btn_settings = findViewById(R.id.btn_settings);
+
+        //settingsClicks-Listener to open alertHandler and use Method: showSettingsAlert
+        View.OnClickListener settingClicks = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertHandler.showSettingsAlert();
+            }
+        };
+        //Calling the settingClicks-Listener for the Settings Buttons
+        btn_settings.setOnClickListener(settingClicks);
+        ibtn_settings.setOnClickListener(settingClicks);
+
         }
 
 
-
+    //Backpress to close drawer when not clicked in area
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -128,7 +136,9 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    // ITEM SELECTION IN DRAWER
 
+    //Listener for Item selection in Drawer
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {

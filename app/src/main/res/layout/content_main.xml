@@ -20,6 +20,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@android:drawable/ic_menu_camera" />
 
+    <TextView
+        android:id="@+id/textviewdatabasetest"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
     <ImageButton
         android:id="@+id/ibtn_speaker_aktivity"
         android:layout_width="64dp"
@@ -51,36 +56,43 @@
 
         <ImageButton
             android:id="@+id/reverse_btn"
-            android:layout_width="wrap_content"
+            android:layout_width="66dp"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
             android:includeFontPadding="false"
             android:src="@drawable/ic_previous_button"
-            android:textSize="12dp"
+            android:scaleType="center"
+            android:scaleY="2"
+            android:scaleX="2"
             app:layout_constraintEnd_toStartOf="@id/current_btn"
             app:layout_constraintTop_toBottomOf="@id/direction_show" />
 
         <ImageButton
             android:id="@+id/current_btn"
-            android:layout_width="wrap_content"
+            android:layout_width="66dp"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
             android:src="@drawable/ic_current_button"
-            android:textSize="12dp"
-
+            android:scaleType="center"
+            android:scaleY="2"
+            android:scaleX="2"
             app:layout_constraintTop_toBottomOf="@id/direction_show"
             app:layout_constraintEnd_toStartOf="@id/next_btn"/>
 
         <ImageButton
             android:id="@+id/next_btn"
-            android:layout_width="wrap_content"
+            android:layout_width="66dp"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
             android:src="@drawable/ic_next_button"
-            android:textSize="12dp"
+            android:scaleType="center"
+            android:scaleY="2"
+            android:scaleX="2"
             app:layout_constraintTop_toBottomOf="@id/direction_show"
-            tools:layout_editor_absoluteX="344dp" />
+            tools:layout_editor_absoluteX="344dp"
+            app:layout_constraintEnd_toEndOf="@id/direction_show"/>
 
     </android.support.constraint.ConstraintLayout>
+
 </android.support.constraint.ConstraintLayout>
 
